@@ -33,4 +33,4 @@ proguard/
 *.log
 
 # Release Key
-gradlerelease.jks
+app/gradlerelease.jks
