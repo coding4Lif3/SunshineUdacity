@@ -1,16 +1,24 @@
 package com.coding4lif3.sunshine;
 
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.os.Build;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
+import com.coding4lif3.sunshine.data.Weather;
+import com.coding4lif3.sunshine.network.NetworkManager;
+import com.coding4lif3.sunshine.network.service.WeatherService;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -24,6 +32,8 @@ public class MainActivity extends ActionBarActivity {
                     .add(R.id.container, new PlaceholderFragment())
                     .commit();
         }
+
+        new AsyncWheatherFetcher().execute();
     }
 
 
@@ -56,9 +66,36 @@ public class MainActivity extends ActionBarActivity {
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                Bundle savedInstanceState) {
+                                 Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+
+            String[] forecastArray = {"Today - Sunny - 88/63", "Tomorrow - Foggy - 72/40", "Weds - Cloudy - 72/65", "Thurs - Asteroids - 75/65", "fri - Heavy Rain - 65/56", "Sat - HELP TRAPPED IN WHEATERSTATION - 60/51", "Sun - Sunny - 80/68"};
+            List<String> weekForecast = new ArrayList<String>(Arrays.asList(forecastArray));
+
+            //initializing listView
+            ArrayAdapter<String> mForecastAdapter = new ArrayAdapter<String>(getActivity(), R.layout.list_item_forecast, R.id.list_item_forecast_textview, weekForecast);
+            ListView mForecastListView = (ListView) rootView.findViewById(R.id.listview_forecast);
+            mForecastListView.setAdapter(mForecastAdapter);
+
+
             return rootView;
         }
+    }
+
+    /**
+     * AsyncTask for fetch wheater
+     */
+    private class AsyncWheatherFetcher extends AsyncTask<Void, Void, Weather> {
+
+
+        @Override
+        protected Weather doInBackground(Void... params) {
+            // fetchinf wheater data from server
+            WeatherService mWeatherService = NetworkManager.getInstance(MainActivity.this).getAdapter().create(WeatherService.class);
+            Weather weather = mWeatherService.weatherRequest(94043, "json", "metric", 7);
+
+            return weather;
+        }
+
     }
 }
