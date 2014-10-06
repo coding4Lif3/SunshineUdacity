@@ -13,7 +13,7 @@ public class Weather {
     private int cnt;
     private int cod;
     @SerializedName("list")
-    private ArrayList<WeatherDescription> weatherDesc;
+    private ArrayList<WeatherDescription> weatherDescList;
     private String message;
 
     public City getCity() {
@@ -41,11 +41,11 @@ public class Weather {
     }
 
     public ArrayList<WeatherDescription> getWeatherDesc() {
-        return weatherDesc;
+        return weatherDescList;
     }
 
     public void setWeatherDesc(ArrayList<WeatherDescription> weatherDesc) {
-        this.weatherDesc = weatherDesc;
+        this.weatherDescList = weatherDesc;
     }
 
     public String getMessage() {
