@@ -113,13 +113,17 @@ public class ForecastFragment extends Fragment {
         @Override
         protected String[] doInBackground(String... info) {
             Log.d(LOG_TAG, "Fetching data from remote");
+            String[] weatherDesc = null;
 
             //retrieving location from preferences
             String location = info[0];
+            String tUnits = info[1];
 
-            // fetching and parsing weather data from server
+            //fetching and parsing weather data from server
             WeatherService mWeatherService = NetworkManager.getInstance(getActivity()).getAdapter().create(WeatherService.class);
-            Weather weather = mWeatherService.weatherRequest(Long.parseLong(location), "json", "metric", 7);
+
+            //weather without callback
+            Weather weather = mWeatherService.weatherRequest(Long.parseLong(location), "json", tUnits, 7);
 
             return getFormattedWeatherInfos(weather.getWeatherDesc());
         }
@@ -196,6 +200,6 @@ public class ForecastFragment extends Fragment {
      * Update the current weather
      */
     private void updateWeather() {
-        new AsyncWheatherFetcher().execute(Utility.getPreferenceLocation(getActivity()));
+        new AsyncWheatherFetcher().execute(Utility.getPreferenceLocation(getActivity()), Utility.getPreferenceTempUnits(getActivity()));
     }
 }

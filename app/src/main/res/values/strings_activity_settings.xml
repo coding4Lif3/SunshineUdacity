@@ -3,19 +3,20 @@
 
     <!-- Strings related to Location Setting -->
     <string name="preference_location_key" translatable="false">location_key</string>
-    <string name="preference_location_default" translatable="false">9344</string>
+    <string name="preference_location_default" translatable="false">94043</string>
     <string name="preference_location_title" translatable="false">Location</string>
 
     <!-- Strings related to Units Setting -->
     <string name="preference_tunits_key" translatable="false">units_key</string>
     <string name="preference_tunits_title" translatable="false">Temperature Units</string>
-    <string name="preference_tunits_default" translatable="false">9344</string>
-    <integer-array name="preverence_tunits_options">
+    <string name="preference_tunits_default" translatable="false">metric</string>
+    <string-array name="preferences_tunits_entries_keys">
+        <item>Metric</item>
+        <item>Imperial</item>
+    </string-array>
+    <string-array name="preferences_tunits_entries_values">
         <item>metric</item>
-    </integer-array>
-    <integer-array name="preverence_tunits_values">
-        <item></item>
-    </integer-array>
-
+        <item>imperial</item>
+    </string-array>
 
 </resources>

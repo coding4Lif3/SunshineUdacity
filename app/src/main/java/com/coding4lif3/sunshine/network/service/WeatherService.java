@@ -10,10 +10,18 @@ import retrofit.http.Query;
  */
 public interface WeatherService {
 
-    // user subscription
+    // weather request
     @GET("/data/2.5/forecast/daily")
     Weather weatherRequest(@Query("q") long cityCode,
-                                 @Query("mode") String outputMode,
-                                 @Query("units") String units,
-                                 @Query("cnt") long numberOfDays);
+                           @Query("mode") String outputMode,
+                           @Query("units") String units,
+                           @Query("cnt") long numberOfDays);
+
+    // weather request with callback
+    @GET("/data/2.5/forecast/daily")
+    void weatherRequest(@Query("q") long cityCode,
+                           @Query("mode") String outputMode,
+                           @Query("units") String units,
+                           @Query("cnt") long numberOfDays,
+                           retrofit.Callback<Weather> weatherCallback);
 }

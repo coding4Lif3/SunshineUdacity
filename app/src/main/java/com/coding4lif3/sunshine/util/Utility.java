@@ -15,4 +15,9 @@ public class Utility {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(ctx);
         return preferences.getString(ctx.getString(R.string.preference_location_key), ctx.getString(R.string.preference_location_default));
     }
+
+    public static String getPreferenceTempUnits(Context ctx) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(ctx);
+        return preferences.getString(ctx.getString(R.string.preference_tunits_key), ctx.getString(R.string.preference_tunits_default));
+    }
 }

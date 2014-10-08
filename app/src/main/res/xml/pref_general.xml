@@ -12,6 +12,11 @@
         android:singleLine="true"
         android:maxLines="1" />
 
-    <ListPreference android:key="@string/preference_tunits_key" android:title="@string/preference_tunits_title"
+    <ListPreference
+        android:key="@string/preference_tunits_key"
+        android:title="@string/preference_tunits_title"
+        android:entries="@array/preferences_tunits_entries_keys"
+        android:entryValues="@array/preferences_tunits_entries_values"
+        android:defaultValue="@string/preference_tunits_default" />
 
 </PreferenceScreen>
