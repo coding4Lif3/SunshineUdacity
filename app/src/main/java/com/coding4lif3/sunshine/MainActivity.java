@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -12,6 +13,8 @@ import com.coding4lif3.sunshine.util.Utility;
 
 
 public class MainActivity extends ActionBarActivity {
+
+    private final static String LOG_TAG = MainActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +55,12 @@ public class MainActivity extends ActionBarActivity {
 
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(geoLocation);
-        startActivity(intent);
+
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        } else {
+            Log.d(LOG_TAG, "Couldn't call " + preferredLocation + ", location");
+        }
     }
 
 

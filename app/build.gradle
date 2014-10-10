@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.coding4lif3.sunshine"
-        minSdkVersion 10
+        minSdkVersion 14
         targetSdkVersion 20
         versionName "SunshineGradle"
         versionCode 2
