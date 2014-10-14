@@ -34,6 +34,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.coding4lif3.sunshine.MainActivity" />
         </activity>
+
+        <!-- Content Providers -->
+        <provider
+            android:authorities="com.coding4lif3.sunshine"
+            android:name=".db.WeatherProvider" />
     </application>
 
 </manifest>
